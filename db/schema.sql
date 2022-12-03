@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS techblog_db;
+CREATE DATABASE IF NOT EXISTS techblog_db;
