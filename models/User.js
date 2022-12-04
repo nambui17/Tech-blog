@@ -18,7 +18,6 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
     },
     email: {
@@ -33,7 +32,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [6],
+        len: [8],
       },
     },
   },
@@ -43,17 +42,10 @@ User.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      beforeUpdate: async (updatedUser) => {
-        try {
-          updatedUser.password = await bcrypt.hash(
-            updatedUser.password, 10
-          );
-          return updatedUser;
-        } catch (err) {
-          console.log(err);
-          return err;
-        }
-      }
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        return updatedUserData;
+      },
     },
     sequelize,
     timestamps: false,
