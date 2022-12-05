@@ -1,19 +1,25 @@
-<h2>Posts</h2>
-
 <div class="container">
+  <div class="row justify-content-center">
+    <h2 class="text-center">Posts</h2>
+  </div>
+</div>
+
+<div class='container'>
   {{#each posts as |post|}}
-    <div class="row">
-      <div class="card w-100">
-        <div class="card-header row align-items-center">
-          <h3 class="col-9">{{ post.title }}</h3>
-          <p class="col-3"> Posted By {{post.user.username}} on {{format_date post.time }}</p>
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            {{post.body}}
-          </p>
-        </div>
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="col-7">
+          {{post.title}}
+        </h3>
+        <p class="col-5 text-right">
+          Posted By {{post.user.username}} on {{format_date post.time}}
+        </p>
       </div>
+      <article class="card-body">
+        <p class="card-text">
+          {{post.body}}
+        </p>
+      </article>
     </div>
   {{/each}}
 </div>

@@ -68,7 +68,9 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
     // render the page again maybe without post with handlebars
     res.status(200).json(postData);
-  } catch (err) {}
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
