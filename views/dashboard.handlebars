@@ -1,0 +1,43 @@
+<h2>Posts</h2>
+
+<div class="container">
+  {{#each posts as |post|}}
+    <div class="row">
+      <div class="card w-100">
+        <div class="card-header row align-items-center">
+          <h3 class="col-9">{{ post.title }}</h3>
+          <p class="col-3"> Posted By {{post.user.username}} on {{format_date post.time }}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            {{post.body}}
+          </p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Create a Blog Post!
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create your post here!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
