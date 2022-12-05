@@ -22,6 +22,11 @@ Comment.init(
                 key: 'id'
             },
         },
+        time: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
         post_id: {
             type: DataTypes.INTEGER,
             references: {
