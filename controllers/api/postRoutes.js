@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
-const moment = require('moment');
 
 router.get('/', async (req, res) => {
   try {
@@ -44,7 +43,6 @@ router.post('/', withAuth, async (req, res) => {
     const newPost = await Post.create({
       ...req.body,
       user_id: req.session.user_id,
-      time: moment().format(),
     });
     // render the homepage with the new post
     res.status(200).json(newPost);
