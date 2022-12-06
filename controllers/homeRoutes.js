@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: { model: User },
+      include: [{ model: User }, { model: Comment }],
     });
     const posts = postData.map((post) => post.get({ plain: true }));
     res.render('homepage', {
@@ -22,15 +22,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', (req, res) => {
-  res.render('profile');
-});
-
 router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth ,async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {
@@ -38,8 +34,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
       },
     });
     const posts = postData.map((post) => post.get({ plain: true }));
+    console.log(posts);
     res.render('dashboard', {
       posts,
+      logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);

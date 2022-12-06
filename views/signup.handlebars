@@ -1,8 +1,12 @@
-<div class="container justify-content-center">
+<div class='container justify-content-center'>
   <div class='card align-items-center w-75 mt-5'>
     <form class='signup-form col-6 justify-content-center'>
       <div class='form-group mt-4'>
-        <label for='email-signup'>Username</label>
+        <label for='username-signup'>Username</label>
+        <input type='text' class='form-control' id='username-signup'/>
+      </div>
+      <div class='form-group'>
+        <label for='password-signup'>E-mail</label>
         <input
           type='email'
           class='form-control'
@@ -11,16 +15,15 @@
         />
       </div>
       <div class='form-group'>
-        <label for='password-signup'>E-mail</label>
-        <input type='password' class='form-control' id='password-signup' />
-      </div>
-      <div class='form-group'>
         <label for='password-signup'>Password</label>
         <input type='password' class='form-control' id='password-signup' />
       </div>
       <div class='form-group'>
-        <label for='password-signup'>Re-enter Your Password</label>
-        <input type='password' class='form-control' id='password-signup' />
+        <label for='passRe-signup'>Re-enter Your Password</label>
+        <input type='password' class='form-control' id='passRe-signup' />
+        <small hidden id='passwordHelpBlock' class='form-text text-muted'>
+          Your passwords must match!
+        </small>
       </div>
       <button type='submit' class='btn btn-primary'>Submit</button>
     </form>

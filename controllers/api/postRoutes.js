@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const postData = await Post.findByPk({
+    const postData = await Post.findOne({
       where: {
         id: req.params.id,
       },
@@ -32,22 +32,25 @@ router.get('/:id', async (req, res) => {
         model: Comment,
       },
     });
-    res.status(200).json(postData);
+    const post = postData.get({ plain: true });
+    res.render('singlePost', {
+      post
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
+    console.log(req.body);
     const newPost = await Post.create({
       ...req.body,
       user_id: req.session.user_id,
     });
-    // render the homepage with the new post
     res.status(200).json(newPost);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
