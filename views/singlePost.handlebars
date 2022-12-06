@@ -1,0 +1,22 @@
+<div class='container mt-5'>
+    <div class='card mb-4 post' data-postid="{{post.id}}">
+      <div
+        class='card-header d-flex justify-content-between align-items-center'
+      >
+        <h3 class='col-7'>
+          {{post.title}}
+        </h3>
+        <p class='col-5 text-right'>
+          Posted By
+          {{post.user.username}}
+          on
+          {{format_date post.time}}
+        </p>
+      </div>
+      <article class='card-body'>
+        <p class='card-text'>
+          {{post.body}}
+        </p>
+      </article>
+    </div>
+</div>

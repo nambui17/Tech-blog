@@ -1,49 +1,96 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h2 class="text-center">Posts</h2>
+<div class='container mb-5'>
+  <div class='row justify-content-center'>
+    <h2 class='text-center'>Posts</h2>
   </div>
 </div>
 
 <div class='container'>
   {{#each posts as |post|}}
-    <div class="card mb-4">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="col-7">
+    <div class='card mb-4 post' data-postid="{{post.id}}">
+      <div
+        class='card-header d-flex justify-content-between align-items-center'
+      >
+        <h3 class='col-7'>
           {{post.title}}
         </h3>
-        <p class="col-5 text-right">
-          Posted By {{post.user.username}} on {{format_date post.time}}
+        <p class='col-5 text-right'>
+          Posted By
+          {{post.user.username}}
+          on
+          {{format_date post.time}}
         </p>
       </div>
-      <article class="card-body">
-        <p class="card-text">
+      <article class='card-body'>
+        <p class='card-text'>
           {{post.body}}
         </p>
       </article>
     </div>
+  {{else}}
+    <div class='card mb-5'>
+      <h2 class='card-body text-center'>
+        No Posts Yet!
+      </div>
+    </div>
   {{/each}}
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Create a Blog Post!
-</button>
+<div class='container'>
+  <div class='row justify-content-center'>
+    <button
+      type='button'
+      class='btn btn-primary'
+      data-toggle='modal'
+      data-target='#postModal'
+    >
+      Create a Blog Post!
+    </button>
+  </div>
+</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create your post here!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+<div
+  class='modal fade'
+  id='postModal'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='postModalLabel'
+  aria-hidden='true'
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='postModalLabel'>Create your post here!</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class='modal-body'>
+        <form>
+          <div class="form-group">
+            <label for="postTitle">Title</label>
+              <textarea class="form-control form-control-lg" id="postTitle" rows="1"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="postBody">Body</label>
+              <textarea class="form-control form-control-sm" id="postBody" rows="5"></textarea>
+          </div>
+          <div class='modal-footer'>
+            <button
+              type='button'
+              class='btn btn-secondary'
+              data-dismiss='modal'
+              >Close</button>
+            <button type='submit' class='btn btn-primary' id="postCreate">Create Post!</button>
+          </div>  
+        </form>
       </div>
     </div>
   </div>
 </div>
+
+<script src='/js/newPost.js'></script>

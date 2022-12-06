@@ -1,0 +1,11 @@
+:root {
+    --purp: #A09EBB;
+    --grurp: #A8AEC1;
+    --opal: #B5D2CB;
+    --apl: #BFFFBC;
+    --mint: #A6FFA1;
+}
+
+.post:hover {
+    cursor: pointer;
+}
