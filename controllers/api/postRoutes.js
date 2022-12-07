@@ -28,13 +28,24 @@ router.get('/:id', async (req, res) => {
       where: {
         id: req.params.id,
       },
-      include: {
-        model: Comment,
-      },
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          include: [User],
+          order: [['time','DESC']]
+        },
+      ],
     });
     const post = postData.get({ plain: true });
+    console.log(post);
     res.render('singlePost', {
-      post
+      post,
+      logged_in: req.session.logged_in,
+      user_idnum: req.session.user_id
     });
   } catch (err) {
     res.status(500).json(err);
@@ -54,6 +65,29 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try {
+    const postData = await Post.update(
+      {
+        title: req.body.title,
+        body: req.body.body,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    if (!postData) {
+      res.status(400).json({ message: 'No post found with this id!' });
+      return;
+    }
+    res.status(200).json(postData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({
@@ -64,10 +98,9 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!postData) {
-      res.status(400).json({ message: 'No project found with this id!' });
+      res.status(400).json({ message: 'No post found with this id!' });
       return;
     }
-    // render the page again maybe without post with handlebars
     res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);

@@ -1,22 +1,24 @@
 <div class='jumbotron jumbotron-fluid'>
   <div class='container'>
-    <h1 class='display-4'>Fluid jumbotron</h1>
-    <p class='lead'>This is a modified jumbotron that occupies the entire
-      horizontal space of its parent.</p>
+    <h1 class='display-4'>print('Welcome')</h1>
+    <h1 class="display-4">std::cout << "Bienvenue" << std::endl;</h1>
+    <h1 class="display-4 pb-4">console.log('ようこそ')</h1>
+    <p class='lead'>Welcome to the Tlog, the technology blog for all your tech needs!</p>
   </div>
 </div>
 
 <div class="container">
   <div class="row justify-content-center">
-    <h2 class="text-center">Posts</h2>
+    <h2 class="text-center">Timeline</h2>
   </div>
 </div>
 
 <div class='container'>
   {{#each posts as |post|}}
-    <div class='card mb-4 post' data-postid="{{post.id}}">
+    <div class='card mb-4'>
       <div
-        class='card-header d-flex justify-content-between align-items-center'
+        class='card-header d-flex justify-content-between align-items-center post'
+        data-postid="{{post.id}}"
       >
         <h3 class='col-7'>
           {{post.title}}
@@ -42,3 +44,5 @@
     </div>
   {{/each}}
 </div>
+
+<script src="/js/postClick.js"></script>
