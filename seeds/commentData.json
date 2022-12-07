@@ -1,0 +1,17 @@
+[
+    {
+      "body": "Hello Clarice",
+      "user_id": 1,
+      "post_id": 1
+    },
+    {
+        "body": "Hello again",
+        "user_id": 3,
+        "post_id": 1
+    },
+    {
+        "body": "I'm always watching",
+        "user_id": 2,
+        "post_id": 1
+    }
+]

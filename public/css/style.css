@@ -1,11 +1,15 @@
 :root {
-    --purp: #A09EBB;
-    --grurp: #A8AEC1;
-    --opal: #B5D2CB;
-    --apl: #BFFFBC;
-    --mint: #A6FFA1;
+  --purp: #a09ebb;
+  --grurp: #a8aec1;
+  --opal: #b5d2cb;
+  --apl: #bfffbc;
+  --mint: #a6ffa1;
 }
 
 .post:hover {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.comment:hover {
+  cursor: pointer;
 }
