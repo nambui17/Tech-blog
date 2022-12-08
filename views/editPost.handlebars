@@ -42,6 +42,7 @@
   role='dialog'
   aria-labelledby='postModalLabel'
   aria-hidden='true'
+  data-postid="{{post.id}}"
 >
   <div class='modal-dialog' role='document'>
     <div class='modal-content'>
@@ -73,6 +74,7 @@
               data-dismiss='modal'
               >Close</button>
             <button type='submit' class='btn btn-primary' id="postEdit">Edit</button>
+            <button type='submit' class='btn btn-danger' id="postDelete">Delete</button>
           </div>  
         </form>
       </div>

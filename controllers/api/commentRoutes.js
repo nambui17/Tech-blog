@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Post, Comment } = require('../../models');
+const { User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // get all comments route
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 //get single comment route
 router.get('/:id', async (req, res) => {
   try {
-    const commentData = await Comment.findByPk({
+    const commentData = await Comment.findOne({
       where: {
         id: req.params.id,
       },
@@ -42,20 +42,18 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
       },
     });
-
     if (!commentData) {
       res.status(400).json({ message: 'No project found with this id!' });
       return;
     }
-    res.status(200).json(postData);
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
