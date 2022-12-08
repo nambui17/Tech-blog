@@ -36,7 +36,7 @@
           {{comment.body}}
         </p>
         <p class='col-8 text-right'>
-          Posted By
+          Commented By
           {{comment.user.username}}
           on
           {{format_date comment.time}}
@@ -45,6 +45,64 @@
     </div>
   </div>
 {{/each}}
+
+{{#if logged_in}}
+<div class='container'>
+  <div class='row justify-content-center'>
+    <button
+      type='button'
+      class='btn btn-info'
+      data-toggle='modal'
+      data-target='#newComment'
+    >
+      Comment
+    </button>
+  </div>
+</div>
+{{/if}}
+
+<div
+  class='modal fade'
+  id='newComment'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='newCommentLabel'
+  aria-hidden='true'
+  data-loggeduser="{{user_idnum}}"
+  data-postid ="{{post.id}}"
+>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='newCommentLabel'>Edit your comment!</h5>
+        <button
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <form>
+          <div class="form-group">
+            <label for="newCommentBody">Body</label>
+              <textarea class="form-control form-control-sm" id="newCommentBody" rows="5"></textarea>
+          </div>
+          <div class='modal-footer'>
+            <button
+              type='button'
+              class='btn btn-secondary'
+              data-dismiss='modal'
+              >Close</button>
+            <button type='submit' class='btn btn-success' id="newCommentSubmit">Comment</button>
+          </div>  
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div
   class='modal fade'
@@ -90,3 +148,4 @@
 </div>
 
 <script src='/js/clickComment.js'></script>
+<script src='/js/newComment.js'></script>

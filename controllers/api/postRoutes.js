@@ -41,7 +41,6 @@ router.get('/:id', async (req, res) => {
       ],
     });
     const post = postData.get({ plain: true });
-    console.log(post);
     res.render('singlePost', {
       post,
       logged_in: req.session.logged_in,
@@ -54,7 +53,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    console.log(req.body);
     const newPost = await Post.create({
       ...req.body,
       user_id: req.session.user_id,
@@ -96,7 +94,6 @@ router.delete('/:id', withAuth, async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-
     if (!postData) {
       res.status(400).json({ message: 'No post found with this id!' });
       return;

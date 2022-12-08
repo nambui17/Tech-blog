@@ -1,20 +1,22 @@
-const newPostHandler = async (event) => {
+$('#newCommentSubmit').on('click', async function (event) {
   event.preventDefault();
-  const commentBody = document.querySelector('#postBody').value.trim();
-  if (postTitle && postBody) {
+  const userId = $('#newComment').data('loggeduser');
+  const postId = $('#newComment').data('postid');
+  const commentBody = $('#newCommentBody').val();
+  if (commentBody) {
     const response = await fetch('/api/comments', {
       method: 'POST',
-      body: JSON.stringify({ body: commentBody }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        body: commentBody,
+        user_id: userId,
+        post_id: postId,
+      }),
     });
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.reload();
     } else {
-      alert('Failed to create post');
+      alert(response.statusText);
     }
   }
-};
-
-document.querySelector('#postCreate').addEventListener('click', newPostHandler);
+});
